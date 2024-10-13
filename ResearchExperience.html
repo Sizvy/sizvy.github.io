@@ -113,6 +113,23 @@
             max-width: 1000px;
         }
 
+        .research-image {
+            width: 200px;
+            height: auto; /* Maintain the aspect ratio */
+            margin-right: 20px; /* Adds space between the image and the text */
+            float: left; /* Makes the image float to the left of the text */
+        }
+
+        .li-content {
+            overflow: auto; /* Ensures that the container expands correctly and text wraps around the image */
+            margin-bottom: 20px; /* Adds space between list items */
+        }
+
+        .description {
+            overflow: hidden; /* Clears the float so that the container properly wraps around the image */
+        }
+
+
     </style>
 </head>
 <body>
@@ -168,7 +185,7 @@
                             <ul class="news-list">
                                 <li>
                                     <div class="li-content">
-                                        <img src="/Images/overview.png" alt="Vein-Based Imaging Research Image" class="research-image" style="width: 200px; height: auto;">
+                                        <img src="/Images/overview.png" alt="Vein-Based Imaging Research Image" class="research-image">
                                         <strong>Vein-Based Imaging Approach using Deep Learning for Real-Time Non-Invasive Dehydration Detection</strong><br>
                                         <em>Machine Learning, Image processing, Ubiquitous computing</em><br>
                                         Supervisor: <a href="https://sites.google.com/site/tanzimahashem/">Prof. Tanzima Hashem</a><br>
@@ -183,7 +200,7 @@
 
                                 <li>
                                     <div class="li-content">
-                                        <img src="/Images/container.png" alt="Malicious Code Injection" class="research-image" style="width: 200px; height: auto;">
+                                        <img src="/Images/container.png" alt="Malicious Code Injection" class="research-image">
                                         <strong>On Detecting Malicious Code Injection By Monitoring Multi-level Container Activites</strong><br>
                                         <em>Computer Security, Cloud Security</em><br>
                                         Supervisor: <a href="https://mshohrabhossain.buet.ac.bd/">Prof. Md Shohrab Hossain</a><br>
