@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>Md Olid Hasan Bhuiyan - Home Page</title>
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
         }
 
         .profile-img {
@@ -17,14 +24,20 @@
             height: 150px;
             border-radius: 50%;
             margin-bottom: 20px;
+            transition: transform 0.3s;
         }
+
+            .profile-img:hover {
+                transform: scale(1.05);
+            }
 
         .sidebar {
             background-color: #f8f9fa;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin-bottom: 20px; /* Space below sidebar on mobile */
+            margin-bottom: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .sidebar-links {
@@ -48,7 +61,8 @@
             font-size: 1.5rem;
             margin-top: 30px;
             margin-bottom: 15px;
-            font-weight: bold;
+            font-weight: 600;
+            color: #007bff;
         }
 
         .section-content {
@@ -65,6 +79,57 @@
             .news-list li {
                 margin-bottom: 10px;
                 line-height: 1.6;
+            }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+            body.dark-mode .sidebar {
+                background-color: #1e1e1e;
+                color: #ffffff;
+            }
+
+            body.dark-mode .sidebar-links li {
+                color: #ffffff;
+            }
+
+            body.dark-mode .section-title {
+                color: #bb86fc;
+            }
+
+            body.dark-mode .navbar {
+                background-color: #1e1e1e !important;
+            }
+
+            body.dark-mode .navbar-brand,
+            body.dark-mode .nav-link {
+                color: #ffffff !important;
+            }
+
+        /* Toggle Button */
+        .mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+            .mode-toggle:hover {
+                background-color: #0056b3;
             }
 
         /* Responsive Styles */
@@ -204,6 +269,31 @@
             </main>
         </div>
     </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="mode-toggle" id="modeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script>
+        // Dark Mode Toggle
+        const modeToggle = document.getElementById('modeToggle');
+        const body = document.body;
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            modeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        // Check for saved preference
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
