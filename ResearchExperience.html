@@ -70,15 +70,24 @@
             line-height: 1.6;
         }
 
+        .news-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .news-list li {
+                margin-bottom: 10px;
+                line-height: 1.6;
+            }
+
         .li-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
             border: 2px solid #ddd;
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 8px;
             background-color: #f9f9f9;
+            overflow: auto; /* Clear floats */
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
             max-width: 1000px;
         }
@@ -88,12 +97,11 @@
             height: auto;
             margin-right: 20px;
             margin-bottom: 15px;
-            flex-shrink: 0;
+            float: left; /* Float image to the left */
         }
 
         .description {
-            flex: 1;
-            min-width: 300px;
+            overflow: hidden; /* Clear floats */
         }
 
         /* Dark Mode Styles */
@@ -172,15 +180,15 @@
                 font-size: 0.9rem;
             }
 
-            .li-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
             .research-image {
                 width: 100%;
+                float: none;
                 margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .li-content {
+                padding: 10px;
             }
         }
     </style>
@@ -190,55 +198,98 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><strong>Md Olid Hasan Bhuiyan</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="publications.html">Publications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="ResearchExperience.html">Research</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="services.html">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="projects.html">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Files/CV_OLID_HASAN_BHUIYAN.pdf">CV</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
 
     <div class="container mt-4">
-        <main>
-            <h2 class="section-title">Research Experiences</h2>
-            <div class="section-content">
-                <ul class="news-list">
-                    <li>
-                        <div class="li-content">
-                            <img src="/Images/overview.png" alt="Vein-Based Imaging Research Image" class="research-image">
-                            <div class="description">
-                                <strong>Vein-Based Imaging Approach using Deep Learning for Real-Time Non-Invasive Dehydration Detection</strong><br>
-                                <em>Machine Learning, Image processing, Ubiquitous computing</em><br>
-                                Supervisor: <a href="https://sites.google.com/site/tanzimahashem/">Prof. Tanzima Hashem</a><br>
-                                We propose the design of a cost-free, easily accessible dehydration detection system that estimates a person's hydration status using a
-                                smartphone, without any hardware modifications or additional sensors. We create a novel dataset that includes hydration and dehydration
-                                images of each user including all the 4 landmarks. Besides, in order to evaluate biological factors, people from different ages and
-                                genders are considered. We present a novel process for selecting the best frame from hand-vein videos. Additionally, We propose two methods for
-                                extracting regions of interest (ROI): a light-weight, computational geometry-based method and a machine learning-based method. Now we
-                                are finalizing the paper to submit in IMWUT.
-                            </div>
-                        </div>
-                    </li>
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-md-4">
+                <div class="sidebar">
+                    <div class="profile">
+                        <img src="/Images/portfolio_2025.jpg" alt="Profile Picture" class="profile-img">
+                    </div>
+                    <ul class="sidebar-links">
+                        <li><i class="fas fa-map-marker-alt"></i> California, USA</li>
+                        <li><a href="mailto:mbhui008@ucr.edu"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href="https://scholar.google.com/citations?user=FqGRNsAAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a></li>
+                        <li><a href="https://github.com/Sizvy"><i class="fab fa-github"></i> Github</a></li>
+                        <li><a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </aside>
 
-                    <li>
-                        <div class="li-content">
-                            <img src="/Images/container.png" alt="Malicious Code Injection" class="research-image">
-                            <div class="description">
-                                <strong>On Detecting Malicious Code Injection By Monitoring Multi-level Container Activities</strong><br>
-                                <em>Computer Security, Cloud Security</em><br>
-                                Supervisor: <a href="https://mshohrabhossain.buet.ac.bd/">Prof. Md Shohrab Hossain</a><br>
-                                In recent years, cloud-native applications have been widely hosted and managed in containerized environments due to their unique
-                                benefits, such as being lightweight, portable, and cost-efficient. Their growing popularity makes them a common subject of cyberthreats,
-                                as evidenced by recent attacks. Many of those attacks take place due to malicious code injection to breach systems and steal sensitive
-                                data from a containerized environment. However, existing solutions fail to classify malicious code injection attacks that impact
-                                multiple levels (e.g., application and orchestrator). In this paper, we fill in this gap and propose a multi-level monitoring-based
-                                approach where we monitor container activities at both the system call level and the container orchestrator (e.g., Kubernetes) level.
-                                Specifically, our approach can distinguish between the expected and unexpected behavior of a container from various system call
-                                characteristics (e.g., sequence, frequency, etc.) along with the activities through event logs at the orchestrator level to detect
-                                malicious code injection attacks. We implement our approach for Kubernetes, a major container orchestrator, and evaluate it against
-                                various attack paths outlined by the Cloud Native Computing Foundation (CNCF), an open-source foundation for cloud native computing.
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </main>
+            <!-- Main Content -->
+            <main class="col-md-8">
+                <div class="section">
+                    <h2 class="section-title">Research Experiences</h2>
+                    <div class="section-content">
+                        <ul class="news-list">
+                            <li>
+                                <div class="li-content">
+                                    <img src="/Images/overview.png" alt="Vein-Based Imaging Research Image" class="research-image">
+                                    <div class="description">
+                                        <strong>Vein-Based Imaging Approach using Deep Learning for Real-Time Non-Invasive Dehydration Detection</strong><br>
+                                        <em>Machine Learning, Image processing, Ubiquitous computing</em><br>
+                                        Supervisor: <a href="https://sites.google.com/site/tanzimahashem/">Prof. Tanzima Hashem</a><br>
+                                        We propose the design of a cost-free, easily accessible dehydration detection system that estimates a person's hydration status using a
+                                        smartphone, without any hardware modifications or additional sensors. We create a novel dataset that includes hydration and dehydration
+                                        images of each user including all the 4 landmarks. Besides, in order to evaluate biological factors, people from different ages and
+                                        genders are considered. We present a novel process for selecting the best frame from hand-vein videos. Additionally, We propose two methods for
+                                        extracting regions of interest (ROI): a light-weight, computational geometry-based method and a machine learning-based method. Now we
+                                        are finalizing the paper to submit in IMWUT.
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="li-content">
+                                    <img src="/Images/container.png" alt="Malicious Code Injection" class="research-image">
+                                    <div class="description">
+                                        <strong>On Detecting Malicious Code Injection By Monitoring Multi-level Container Activites</strong><br>
+                                        <em>Computer Security, Cloud Security</em><br>
+                                        Supervisor: <a href="https://mshohrabhossain.buet.ac.bd/">Prof. Md Shohrab Hossain</a><br>
+                                        In recent years, cloud-native applications have been widely hosted and managed in containerized environments due to their unique
+                                        benefits, such as being lightweight, portable, and cost-efficient. Their growing popularity makes them a common subject of cyberthreats,
+                                        as evidenced by recent attacks. Many of those attacks take place due to malicious code injection to breach systems and steal sensitive
+                                        data from a containerized environment. However, existing solutions fail to classify malicious code injection attacks that impact
+                                        multiple levels (e.g., application and orchestrator). In this paper, we fill in this gap and propose a multi-level monitoring-based
+                                        approach where we monitor container activities at both the system call level and the container orchestrator (e.g., Kubernetes) level.
+                                        Specifically, our approach can distinguish between the expected and unexpected behavior of a container from various system call
+                                        characteristics (e.g., sequence, frequency, etc.) along with the activities through event logs at the orchestrator level to detect
+                                        malicious code injection attacks. We implement our approach for Kubernetes, a major container orchestrator, and evaluate it against
+                                        various attack paths outlined by the Cloud Native Computing Foundation (CNCF), an open-source foundation for cloud native computing.
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
 
     <!-- Dark Mode Toggle Button -->
@@ -247,6 +298,7 @@
     </button>
 
     <script>
+        // Dark Mode Toggle
         const modeToggle = document.getElementById('modeToggle');
         const body = document.body;
 
@@ -257,10 +309,16 @@
             localStorage.setItem('darkMode', isDarkMode);
         });
 
-        if (localStorage.getItem('darkMode') === 'true') {
+        // Check for saved preference
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
             body.classList.add('dark-mode');
             modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
