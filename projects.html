@@ -249,6 +249,22 @@
 
                     <div class="publication">
                         <p>
+                            <strong>Mitigating Git File System Vulnerability</strong><br />
+                            The CVE-2021-21300 vulnerability in Git exposes
+                            a critical security flaw where attackers can execute arbitrary
+                            code by exploiting case-insensitive file systems and symbolic
+                            links. This vulnerability affects Git versions 2.14.2 to 2.30.1 and
+                            allows malicious actors to manipulate Git hooks during repository
+                            cloning. Traditional defenses rely on manual configurations, such
+                            as disabling symbolic links or upgrading Git, which are prone to
+                            human error. This report explores automated solutions, including
+                            an eBPF-based kernel-level defense that monitors and blocks
+                            malicious symlink operations, and complementary measures like
+                            Git aliases for safe cloning <br />
+                            <a href="https://github.com/Sizvy/CS242_Project" class="btn btn-primary" target="_blank">Code</a>
+                        </p>
+                        <br />
+                        <p>
                             <strong>StackOverflow Search Engine</strong><br />
                             This project is an AI-powered search engine designed to help developers quickly find solutions to programming errors by leveraging Stack Overflow data. The system combines keyword-based search (using Lucene) and semantic search (using BERT) to retrieve relevant answers, and it employs a Large Language Model (LLM) to generate concise and accurate solutions. <br />
                             <a href="https://github.com/Sizvy/CS242_Project" class="btn btn-primary" target="_blank">Code</a>
