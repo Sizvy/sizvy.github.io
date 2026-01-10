@@ -205,6 +205,38 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- New Grid Project Styles --- */
+        .project-grid-card {
+            background: rgba(255, 255, 255, 0.03); /* Very subtle fill */
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%; /* Ensures all cards in a row are same height */
+            display: flex;
+            flex-direction: column; /* Aligns content vertically */
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .project-grid-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Fix for icon spacing inside buttons */
+        .btn-glass-sm {
+            gap: 10px; /* Modern way to force space between icon and text */
+        }
+
+        .btn-glass-sm i {
+            margin-right: 5px !important; /* Ensures the icon pushes the text away */
+        }
+
+        /* Helper to push buttons to the bottom of the card */
+        .card-spacer {
+            flex-grow: 1; 
+        }
+
         @media (max-width: 768px) {
             .glass-card { padding: 20px; }
         }
@@ -263,122 +295,125 @@
             </div>
 
             <div class="col-lg-8">
-                <div class="glass-card">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3 class="mb-0">Academic Projects</h3>
-                        <a href="https://github.com/Sizvy" target="_blank" class="btn-glass-sm">
-                            <i class="fab fa-github mr-2"></i> GitHub
-                        </a>
-                    </div>
+    <div class="glass-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0">Academic Projects</h3>
+            <a href="https://github.com/Sizvy" target="_blank" class="btn-glass-sm">
+                <i class="fab fa-github mr-2"></i> GitHub
+            </a>
+        </div>
 
-                    <div class="list-item">
-                        <span class="item-title"><i class="fab fa-git-alt mr-2 text-muted"></i> Mitigating Git File System Vulnerability</span>
-                        <div class="item-desc">
-                            Addressed CVE-2021-21300, a critical flaw allowing arbitrary code execution via case-insensitive file systems and symbolic links. Developed an automated solution using an eBPF-based kernel-level defense to monitor and block malicious symlink operations.
-                        </div>
-                        <div>
-                            <span class="tech-pill">Kernel Security</span>
-                            <span class="tech-pill">eBPF</span>
-                            <span class="tech-pill">C/C++</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/Sizvy/CVE-2021-21300" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-code mr-2"></i> Code
-                            </a>
-                            <a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/overlay/projects/597980710/multiple-media-viewer/?profileId=ACoAACu4BaQBzN_wvzv8ik8wkpWXDIu2GRPnd4I&treasuryMediaId=1750797432925" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-file-pdf mr-2"></i> Report
-                            </a>
-                        </div>
+        <div class="row">
+            
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fab fa-git-alt mr-2 text-muted"></i> Git Vulnerability Fix</span>
+                    <div class="item-desc mt-2">
+                        Addressed CVE-2021-21300 by developing an automated kernel-level defense using eBPF to monitor malicious symlinks.
                     </div>
-
-                    <div class="list-item">
-                        <span class="item-title"><i class="fas fa-search mr-2 text-muted"></i> StackOverflow Search Engine</span>
-                        <div class="item-desc">
-                            AI-powered search engine combining Lucene (keyword search) and BERT (semantic search) to retrieve relevant programming solutions, utilizing an LLM to generate concise answers.
-                        </div>
-                        <div>
-                            <span class="tech-pill">NLP</span>
-                            <span class="tech-pill">Lucene</span>
-                            <span class="tech-pill">BERT</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/Sizvy/CS242_Project" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-code mr-2"></i> Code
-                            </a>
-                        </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">Kernel Security</span>
+                        <span class="tech-pill">eBPF</span>
+                        <span class="tech-pill">C/C++</span>
                     </div>
-
-                    <div class="list-item">
-                        <span class="item-title"><i class="fas fa-image mr-2 text-muted"></i> Bangla Image Captioning</span>
-                        <div class="item-desc">
-                            Proposed and implemented a Deep Learning model capable of generating accurate descriptive captions in the Bangla language for input images.
-                        </div>
-                        <div>
-                            <span class="tech-pill">Deep Learning</span>
-                            <span class="tech-pill">Computer Vision</span>
-                            <span class="tech-pill">Python</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/Sizvy/Bangla-Caption-Generator-for-images.git" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-code mr-2"></i> Code
-                            </a>
-                        </div>
+                    <div class="card-spacer"></div> <div>
+                        <a href="https://github.com/Sizvy/CVE-2021-21300" target="_blank" class="btn-glass-sm"><i class="fas fa-code"></i> Code</a>
+                        <a href="#" target="_blank" class="btn-glass-sm"><i class="fas fa-file-pdf"></i> Report</a>
                     </div>
-
-                    <div class="list-item">
-                        <span class="item-title"><i class="fas fa-brain mr-2 text-muted"></i> Bangla Digit Recognition</span>
-                        <div class="item-desc">
-                            Built a Convolutional Neural Network (CNN) from scratch for recognizing handwritten Bangla digits, achieving 91% validation accuracy and 77% independent test accuracy.
-                        </div>
-                        <div>
-                            <span class="tech-pill">CNN</span>
-                            <span class="tech-pill">TensorFlow</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/Sizvy/Bangla-Digit-Recognition.git" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-code mr-2"></i> Code
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="list-item">
-                        <span class="item-title"><i class="fas fa-network-wired mr-2 text-muted"></i> TCP Libra Implementation</span>
-                        <div class="item-desc">
-                            Successful implementation of the TCP Libra congestion control algorithm within the NS3 network simulator environment.
-                        </div>
-                        <div>
-                            <span class="tech-pill">NS3</span>
-                            <span class="tech-pill">Networking</span>
-                            <span class="tech-pill">C++</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/Sizvy/Tcp-LIbra.git" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-code mr-2"></i> Code
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="list-item">
-                        <span class="item-title"><i class="fas fa-language mr-2 text-muted"></i> Englishour Platform</span>
-                        <div class="item-desc">
-                            A comprehensive software development project creating an interactive English Learning Platform designed specifically for children.
-                        </div>
-                        <div>
-                            <span class="tech-pill">Full Stack</span>
-                            <span class="tech-pill">Web Dev</span>
-                        </div>
-                        <div class="mt-3">
-                            <a href="https://github.com/swapped004/englishour_FE.git" target="_blank" class="btn-glass-sm">
-                                <i class="fab fa-js mr-2"></i> Frontend
-                            </a>
-                            <a href="https://github.com/tawsifshahriar7/englishour-backend.git" target="_blank" class="btn-glass-sm">
-                                <i class="fas fa-server mr-2"></i> Backend
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fas fa-search mr-2 text-muted"></i> StackOverflow Search</span>
+                    <div class="item-desc mt-2">
+                        AI-powered search engine combining Lucene (keywords) and BERT (semantic) to retrieve solutions with LLM-generated answers.
+                    </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">NLP</span>
+                        <span class="tech-pill">Lucene</span>
+                        <span class="tech-pill">BERT</span>
+                    </div>
+                    <div class="card-spacer"></div>
+                    <div>
+                        <a href="https://github.com/Sizvy/CS242_Project" target="_blank" class="btn-glass-sm"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fas fa-image mr-2 text-muted"></i> Bangla Captioning</span>
+                    <div class="item-desc mt-2">
+                        Proposed and implemented a Deep Learning model capable of generating accurate descriptive captions in Bangla.
+                    </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">Deep Learning</span>
+                        <span class="tech-pill">Vision</span>
+                        <span class="tech-pill">Python</span>
+                    </div>
+                    <div class="card-spacer"></div>
+                    <div>
+                        <a href="https://github.com/Sizvy/Bangla-Caption-Generator-for-images.git" target="_blank" class="btn-glass-sm"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fas fa-brain mr-2 text-muted"></i> Bangla Digit CNN</span>
+                    <div class="item-desc mt-2">
+                        Built a CNN from scratch for handwritten Bangla digits, achieving 91% validation accuracy and 77% test accuracy.
+                    </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">CNN</span>
+                        <span class="tech-pill">TensorFlow</span>
+                    </div>
+                    <div class="card-spacer"></div>
+                    <div>
+                        <a href="https://github.com/Sizvy/Bangla-Digit-Recognition.git" target="_blank" class="btn-glass-sm"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fas fa-network-wired mr-2 text-muted"></i> TCP Libra in NS3</span>
+                    <div class="item-desc mt-2">
+                        Successful implementation of the TCP Libra congestion control algorithm within the NS3 network simulator environment.
+                    </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">NS3</span>
+                        <span class="tech-pill">Networking</span>
+                        <span class="tech-pill">C++</span>
+                    </div>
+                    <div class="card-spacer"></div>
+                    <div>
+                        <a href="https://github.com/Sizvy/Tcp-LIbra.git" target="_blank" class="btn-glass-sm"><i class="fas fa-code"></i>  Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="project-grid-card">
+                    <span class="item-title"><i class="fas fa-language mr-2 text-muted"></i> Englishour Platform</span>
+                    <div class="item-desc mt-2">
+                        A comprehensive software development project creating an interactive English Learning Platform designed for children.
+                    </div>
+                    <div class="mb-3">
+                        <span class="tech-pill">Full Stack</span>
+                        <span class="tech-pill">Web Dev</span>
+                    </div>
+                    <div class="card-spacer"></div>
+                    <div>
+                        <a href="https://github.com/swapped004/englishour_FE.git" target="_blank" class="btn-glass-sm"><i class="fab fa-js"></i> UI</a>
+                        <a href="https://github.com/tawsifshahriar7/englishour-backend.git" target="_blank" class="btn-glass-sm"><i class="fas fa-server"></i> API</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div>
+</div>
         </div>
     </div>
 
