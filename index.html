@@ -3,289 +3,346 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md Olid Hasan Bhuiyan | Security Researcher</title>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-    <title>Md Olid Hasan Bhuiyan - Home Page</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
     <style>
-        /* General Styles */
+        /* --- CSS Variables & Theme Config --- */
+        :root {
+            /* Light Mode Variables */
+            --bg-gradient: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent-color: #4c51bf; /* Indigo */
+            --tag-bg: rgba(76, 81, 191, 0.1);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Variables (Cyberpunk/Tech Vibe) */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #171717 100%);
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-color: #60a5fa; /* Electric Blue */
+            --tag-bg: rgba(96, 165, 250, 0.15);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Global Styles --- */
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed; /* Keeps gradient distinct while scrolling */
+            background-size: 200% 200%;
+            color: var(--text-main);
+            min-height: 100vh;
+            transition: color 0.3s;
+            animation: gradientBG 15s ease infinite; /* Subtle animation */
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.5px; }
+        
+        a { color: var(--accent-color); font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        a:hover { color: var(--text-main); text-decoration: none; text-shadow: 0 0 5px rgba(255,255,255,0.2); }
+
+        /* --- Glass Cards (The Core Design Element) --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+
+        /* --- Profile Section --- */
+        .profile-card {
+            text-align: center;
+        }
         .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 20px; /* Squircle shape is more modern than circle */
             margin-bottom: 20px;
-            transition: transform 0.3s;
+            border: 2px solid var(--accent-color);
+            padding: 3px;
+        }
+        .profile-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        .profile-links a {
+            color: var(--text-muted);
+        }
+        .profile-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
         }
 
-            .profile-img:hover {
-                transform: scale(1.05);
-            }
-
-        .sidebar {
-            background-color: #f8f9fa;
+        /* --- Tech Tags --- */
+        .tech-badge {
+            font-family: 'Fira Code', monospace;
+            background: var(--tag-bg);
+            color: var(--accent-color);
+            padding: 5px 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+            border: 1px solid var(--glass-border);
         }
 
-        .sidebar-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* --- News List (Clean & Techy) --- */
+        .news-item {
+            display: flex;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+        .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .news-date {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            min-width: 110px;
+            padding-top: 3px;
+        }
+        .news-content {
+            font-size: 0.95rem;
+            color: var(--text-main);
         }
 
-            .sidebar-links li {
-                font-size: 1.1rem;
-                margin-bottom: 15px;
-                color: #333;
-            }
-
-            .sidebar-links i {
-                margin-right: 10px;
-                color: #007bff;
-            }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #007bff;
+        /* --- Navbar (Floating Glass) --- */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+        .navbar-brand { font-weight: 700; color: var(--text-main) !important; }
+        .nav-link { color: var(--text-main) !important; font-weight: 500; }
+        .nav-link:hover { color: var(--accent-color) !important; }
 
-        .section-content {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .news-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-            .news-list li {
-                margin-bottom: 10px;
-                line-height: 1.6;
-            }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-            body.dark-mode .sidebar {
-                background-color: #1e1e1e;
-                color: #ffffff;
-            }
-
-            body.dark-mode .sidebar-links li {
-                color: #ffffff;
-            }
-
-            body.dark-mode .section-title {
-                color: #bb86fc;
-            }
-
-            body.dark-mode .navbar {
-                background-color: #1e1e1e !important;
-            }
-
-            body.dark-mode .navbar-brand,
-            body.dark-mode .nav-link {
-                color: #ffffff !important;
-            }
-
-        /* Toggle Button */
-        .mode-toggle {
+        /* --- Dark Mode Toggle --- */
+        .theme-switch {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(5px);
+            color: var(--text-main);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            font-size: 1.1rem;
         }
 
-            .mode-toggle:hover {
-                background-color: #0056b3;
-            }
-
-        /* Responsive Styles */
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .profile-img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .sidebar-links li {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-
-            .section-content {
-                font-size: 0.9rem;
-            }
+            .news-item { flex-direction: column; }
+            .news-date { margin-bottom: 5px; opacity: 0.8; }
         }
     </style>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="index.html"><strong>Md Olid Hasan Bhuiyan</strong></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="publications.html">Publications</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link text-dark" href="ResearchExperience.html">Research</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="services.html">Professional Affiliations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="projects.html">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Files/CV_OLID_HASAN_BHUIYAN.pdf">CV</a>
-                        </li>
-                    </ul>
+<body data-theme="dark"> <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-terminal mr-2" style="font-size: 0.8em; color: var(--accent-color);"></i>
+                Md Olid Hasan Bhuiyan
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="fas fa-bars" style="color: var(--text-main);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Affiliations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Files/CV_OLID_HASAN_BHUIYAN.pdf">CV</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 mb-5">
+        <div class="row">
+            
+            <div class="col-lg-4 mb-4">
+                <div class="glass-card profile-card sticky-top" style="top: 100px; z-index: 1;">
+                    <img src="/Images/portfolio_2025.jpg" alt="Profile" class="profile-img">
+                    <h4>Md Olid Hasan Bhuiyan</h4>
+                    <p class="text-muted mb-3" style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">
+                        PhD Student @ UCR<br>Security & Privacy
+                    </p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center mt-3 mb-4">
+                        <span class="tech-badge">ML Privacy</span>
+                        <span class="tech-badge">Federated Learning</span>
+                        <span class="tech-badge">Cloud Security</span>
+                    </div>
+
+                    <div class="text-left mt-4" style="font-size: 0.9rem;">
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-muted"></i> Riverside, CA</p>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-muted"></i> <a href="mailto:mbhui008@ucr.edu">mbhui008@ucr.edu</a></p>
+                    </div>
+
+                    <div class="profile-links">
+                        <a href="https://scholar.google.com/citations?user=FqGRNsAAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://github.com/Sizvy"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
 
-    <div class="container mt-4">
-        <div class="row">
-            <!-- Sidebar -->
-            <aside class="col-md-4">
-                <div class="sidebar">
-                    <div class="profile">
-                        <img src="/Images/portfolio_2025.jpg" alt="Profile Picture" class="profile-img">
+            <div class="col-lg-8">
+                
+                <div class="glass-card">
+                    <h3 class="mb-3">Research Focus</h3>
+                    <p>
+                        I am currently pursuing my PhD at the University of California, Riverside (UCR). My primary research interest lies at the intersection of <strong>Security and Machine Learning</strong>.
+                    </p>
+                    <p>
+                        Specifically, I am investigating <strong>privacy leakages in Vertical Federated Learning (VFL)</strong> and developing robust defense mechanisms. Prior to this, I worked on Cloud Security with a focus on container runtime protection.
+                    </p>
+                </div>
+
+                <div class="glass-card">
+                    <h3 class="mb-4">Recent Updates</h3>
+                    
+                    <div class="news-item">
+                        <div class="news-date">Present</div>
+                        <div class="news-content">Researching privacy attacks in Vertical Federated Learning.</div>
                     </div>
-                    <ul class="sidebar-links">
-                        <li><i class="fas fa-map-marker-alt"></i> California, USA</li>
-                        <li><a href="mailto:mbhui008@ucr.edu"><i class="fas fa-envelope"></i> Email</a></li>
-                        <li><a href="https://scholar.google.com/citations?user=FqGRNsAAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a></li>
-                        <li><a href="https://github.com/Sizvy"><i class="fab fa-github"></i> Github</a></li>
-                        <li><a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                    </ul>
-                </div>
-            </aside>
 
-            <!-- Main Content -->
-            <main class="col-md-8">
-                <div class="section">
-                    <h2 class="section-title">News</h2>
-                    <ul class="news-list">
-                        <li><strong>[Present]</strong> Currently working on privacy issue in Machine learning specially Vertical Federated Learning.</li>
-                        <li><strong>[May 2025]</strong> I am now a Professional Member of Association for Computing Machinery (ACM), ID: 9085533</li>
-                        <li><strong>[March 2025]</strong> I have started my professional journey a Graduate Student Researcher and Teaching Assistant at UCR</li>
-                        <li><strong>[April 2024]</strong> Our paper - "H2OPulse: Smartphone-Assisted Vein Evaluation for Early Recognition of Dehydration" is accepted at IMWUT November 2024 Journal</li>
-                        <li><strong>[October 2024]</strong> I secured second place at <a href="https://ucrpc.cs.ucr.edu/F24/" target="_blank">UCRPC2024</a> with 628 points among 222 participants.</li>
-                        <li><strong>[May 2024]</strong> I got admission offer from UCR. I am going to start my PhD journey at UCR from September 2024.</li>
-                        <li><strong>[May 2024]</strong> I am going to give conference presentation virtually at CLOSER 2024.</li>
-                        <li><strong>[January 2024]</strong> Our paper  - "On Detecting Malicous Code Injection By Monitoring Multi-level Container Activites" is accepted at CLOSER 2024 Conference.</li>
-                        <li><strong>[May 2023]</strong> I have completed my undergradute studies from BUET.</li>
-                    </ul>
-                </div>
+                    <div class="news-item">
+                        <div class="news-date">May 2025</div>
+                        <div class="news-content">Joined <strong>ACM</strong> as a Professional Member (ID: 9085533).</div>
+                    </div>
 
-                <div class="section">
-                    <h2 class="section-title">Research</h2>
-                    <p class="section-content">
-                        I have a deep interest in the fields of security and privacy, with a particular focus on understanding and countering
-                        <strong>privacy issues in machine learning algorithms.</strong>. During my PhD journey at the University of California, Riverside (UCR), I aim to
-                        contribute to this area through rigorous research and exploration.
-                    </p>
-                    <p class="section-content">
-                        In the final year of my undergraduate studies, I delved into cloud security, with a specific emphasis on container
-                        security. This experience allowed me to build a strong foundation in securing cloud environments, a critical area
-                        in today's rapidly evolving technological landscape.
-                    </p>
+                    <div class="news-item">
+                        <div class="news-date">Mar 2025</div>
+                        <div class="news-content">Appointed as <strong>Graduate Student Researcher</strong> & TA at UCR.</div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">Nov 2024</div>
+                        <div class="news-content">Paper <em>"H2OPulse"</em> accepted at <strong>IMWUT</strong> Journal.</div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">Oct 2024</div>
+                        <div class="news-content">2nd Place at <a href="https://ucrpc.cs.ucr.edu/F24/" target="_blank">UCRPC2024</a> (628 pts).</div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-date">Sep 2024</div>
+                        <div class="news-content">Started PhD journey at <strong>UC Riverside</strong>.</div>
+                    </div>
+
+                     <div class="news-item">
+                        <div class="news-date">May 2024</div>
+                        <div class="news-content">Presented at CLOSER 2024 Conference (Virtual).</div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">Jan 2024</div>
+                        <div class="news-content">Paper on <em>Container Security</em> accepted at <strong>CLOSER 2024</strong>.</div>
+                    </div>
                 </div>
 
-                <div class="section">
-                    <h2 class="section-title">Education</h2>
-                    <p class="section-content">
-                        <strong>BSc in Computer Science and Engineering, May 2023</strong><br />
-                        Bangladesh University of Engineering and Technology, Bangladesh<br />
-                        <strong>Undergraduate thesis topic:</strong> Cloud Security
-                    </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="glass-card">
+                            <h3 class="mb-3">Background</h3>
+                            
+                            <h5 class="mt-4"><i class="fas fa-user-graduate mr-2" style="color: var(--accent-color)"></i> Education</h5>
+                            <p class="mb-1"><strong>B.Sc. in Computer Science & Engineering</strong></p>
+                            <p class="text-muted small">BUET, Bangladesh | May 2023</p>
+                            
+                            <hr style="border-color: var(--glass-border);">
+
+                            <h5 class="mt-3"><i class="fas fa-user mr-2" style="color: var(--accent-color)"></i> Personal</h5>
+                            <p class="small">
+                                Born in Lalmonirhat, Bangladesh. I'm a history buff (especially WWII) and enjoy discussing world politics. 
+                                My nickname is <strong>Sizvy</strong>.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="section">
-                    <h2 class="section-title">Personal</h2>
-                    <p class="section-content">
-                        I was born in Lalmonirhat, a small district in North of Bangladesh. It is not that famous. But somehow I had my best
-                        time of my life here. It is a border district (Very close to India). The population density is quite low here. This
-                        place is full of green.
-                    </p>
-                    <p class="section-content">
-                        In my free time, I like to watch movie or series whatever I find suitable at that time. I love to talk about world
-                        politics and find it quite interesting. And I love historical movie. I am quite enthusiastic to learn about WORLD WAR II.
-                    </p>
-                    <p class="section-content">
-                        Bangla is my mother tongue. I can talk in English (I wouldn't say that I am fluent). I understand Hindi a bit.
-                    </p>
-                    <p class="section-content">
-                        My nickname is Sizvy. I like it when someone call my by that name. But I have no problem going by Olid.
-                    </p>
-                </div>
-            </main>
+            </div>
         </div>
     </div>
 
-    <!-- Dark Mode Toggle Button -->
-    <button class="mode-toggle" id="modeToggle">
-        <i class="fas fa-moon"></i>
+    <button class="theme-switch" id="themeToggle">
+        <i class="fas fa-sun"></i>
     </button>
 
     <script>
-        // Dark Mode Toggle
-        const modeToggle = document.getElementById('modeToggle');
+        const toggleBtn = document.getElementById('themeToggle');
+        const icon = toggleBtn.querySelector('i');
         const body = document.body;
 
-        modeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            modeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            localStorage.setItem('darkMode', isDarkMode);
+        // Check local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
         });
 
-        // Check for saved preference
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode === 'true') {
-            body.classList.add('dark-mode');
-            modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
         }
     </script>
 
