@@ -1,415 +1,574 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Affiliations & Services | Md Olid Hasan Bhuiyan</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Manrope:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        /* --- CSS Variables & Theme Config (Matches Index.html) --- */
-        :root {
-            /* Light Mode Variables */
-            --bg-gradient: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-            --glass-bg: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --accent-color: #4c51bf; /* Indigo */
-            --tag-bg: rgba(76, 81, 191, 0.1);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      /* --- CSS Variables & Theme Config (Matches Index.html) --- */
+      :root {
+        /* Light Mode Variables */
+        --bg-gradient: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --text-main: #2d3748;
+        --text-muted: #718096;
+        --accent-color: #4c51bf; /* Indigo */
+        --tag-bg: rgba(76, 81, 191, 0.1);
+        --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      }
+
+      [data-theme="dark"] {
+        /* Dark Mode Variables (Cyberpunk/Tech Vibe) */
+        --bg-gradient: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #171717 100%
+        );
+        --glass-bg: rgba(30, 41, 59, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --accent-color: #60a5fa; /* Electric Blue */
+        --tag-bg: rgba(96, 165, 250, 0.15);
+        --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- Global Styles --- */
+      body {
+        font-family: "Manrope", sans-serif;
+        background: var(--bg-gradient);
+        background-attachment: fixed;
+        background-size: 200% 200%;
+        color: var(--text-main);
+        min-height: 100vh;
+        transition: color 0.3s;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
         }
-
-        [data-theme="dark"] {
-            /* Dark Mode Variables (Cyberpunk/Tech Vibe) */
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #171717 100%);
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --accent-color: #60a5fa; /* Electric Blue */
-            --tag-bg: rgba(96, 165, 250, 0.15);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        50% {
+          background-position: 100% 50%;
         }
-
-        /* --- Global Styles --- */
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            background-size: 200% 200%;
-            color: var(--text-main);
-            min-height: 100vh;
-            transition: color 0.3s;
-            animation: gradientBG 15s ease infinite;
+        100% {
+          background-position: 0% 50%;
         }
+      }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      a {
+        color: var(--accent-color);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      a:hover {
+        color: var(--text-main);
+        text-decoration: none;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+      }
+
+      /* --- Glass Cards --- */
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease;
+      }
+
+      /* --- Sidebar Profile --- */
+      .profile-img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        border: 2px solid var(--accent-color);
+        padding: 3px;
+      }
+      .profile-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        font-size: 1.2rem;
+      }
+      .profile-links a {
+        color: var(--text-muted);
+      }
+      .profile-links a:hover {
+        color: var(--accent-color);
+        transform: scale(1.1);
+      }
+      .tech-badge {
+        font-family: "Fira Code", monospace;
+        background: var(--tag-bg);
+        color: var(--accent-color);
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        display: inline-block;
+        border: 1px solid var(--glass-border);
+      }
+
+      /* --- Service/Job Item Styles --- */
+      .job-item {
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .job-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .job-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .job-date {
+        font-family: "Fira Code", monospace;
+        font-size: 0.85rem;
+        color: var(--accent-color);
+        background: var(--tag-bg);
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .job-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .btn-glass-sm {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-main);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--glass-border);
+        border-radius: 6px;
+        transition: all 0.2s;
+        margin-top: 10px;
+      }
+      .btn-glass-sm:hover {
+        background: var(--accent-color);
+        color: white;
+        border-color: var(--accent-color);
+      }
+
+      /* --- Navbar --- */
+      .navbar {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--text-main) !important;
+      }
+      .nav-link {
+        color: var(--text-main) !important;
+        font-weight: 500;
+      }
+      .nav-link:hover {
+        color: var(--accent-color) !important;
+      }
+
+      /* --- Dark Mode Toggle --- */
+      .theme-switch {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 45px;
+        height: 45px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(5px);
+        color: var(--text-main);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        z-index: 1000;
+        font-size: 1.1rem;
+      }
+
+      /* Update the body style to include this animation */
+      body {
+        /* ... your existing body styles ... */
+        animation:
+          gradientBG 15s ease infinite,
+          fadeIn 0.8s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
         }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-        h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.5px; }
-        
-        a { color: var(--accent-color); font-weight: 600; text-decoration: none; transition: all 0.2s; }
-        a:hover { color: var(--text-main); text-decoration: none; text-shadow: 0 0 5px rgba(255,255,255,0.2); }
-
-        /* --- Glass Cards --- */
+      @media (max-width: 768px) {
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease;
+          padding: 20px;
         }
-        
-        /* --- Sidebar Profile --- */
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 2px solid var(--accent-color);
-            padding: 3px;
-        }
-        .profile-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
-        .profile-links a { color: var(--text-muted); }
-        .profile-links a:hover { color: var(--accent-color); transform: scale(1.1); }
-        .tech-badge {
-            font-family: 'Fira Code', monospace;
-            background: var(--tag-bg);
-            color: var(--accent-color);
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            display: inline-block;
-            border: 1px solid var(--glass-border);
-        }
-
-        /* --- Service/Job Item Styles --- */
-        .job-item {
-            padding-bottom: 25px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .job-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        
         .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
+          flex-direction: column;
         }
-
-        .job-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
         .job-date {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            background: var(--tag-bg);
-            padding: 2px 8px;
-            border-radius: 4px;
+          margin-top: 5px;
+          margin-bottom: 5px;
         }
-        
-        .job-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .btn-glass-sm {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-main);
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            transition: all 0.2s;
-            margin-top: 10px;
-        }
-        .btn-glass-sm:hover {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        /* --- Navbar --- */
-        .navbar {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar-brand { font-weight: 700; color: var(--text-main) !important; }
-        .nav-link { color: var(--text-main) !important; font-weight: 500; }
-        .nav-link:hover { color: var(--accent-color) !important; }
-
-        /* --- Dark Mode Toggle --- */
-        .theme-switch {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 45px;
-            height: 45px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(5px);
-            color: var(--text-main);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            z-index: 1000;
-            font-size: 1.1rem;
-        }
-
-        /* Update the body style to include this animation */
-        body {
-            /* ... your existing body styles ... */
-            animation: gradientBG 15s ease infinite, fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            .glass-card { padding: 20px; }
-            .job-header { flex-direction: column; }
-            .job-date { margin-top: 5px; margin-bottom: 5px; }
-        }
+      }
     </style>
-</head>
-<body data-theme="dark">
-
+  </head>
+  <body data-theme="dark">
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-terminal mr-2" style="font-size: 0.8em; color: var(--accent-color);"></i>
-                Md Olid Hasan Bhuiyan
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="fas fa-bars" style="color: var(--text-main);"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html" style="color: var(--accent-color) !important;">Affiliations</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Files/CV_OLID_HASAN_BHUIYAN.pdf">CV</a></li>
-                </ul>
-            </div>
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i
+            class="fas fa-terminal mr-2"
+            style="font-size: 0.8em; color: var(--accent-color)"
+          ></i>
+          Md Olid Hasan Bhuiyan
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="fas fa-bars" style="color: var(--text-main)"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="publications.html">Publications</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="services.html"
+                style="color: var(--accent-color) !important"
+                >Affiliations</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Files/CV_OLID_HASAN_BHUIYAN.pdf">CV</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <div class="container mt-4 mb-5">
-        <div class="row">
-            
-            <div class="col-lg-4 mb-4">
-                <div class="glass-card text-center sticky-top" style="top: 100px; z-index: 1;">
-                    <img src="/Images/portfolio_2026.jpg" alt="Profile" class="profile-img">
-                    <h4>Md Olid Hasan Bhuiyan</h4>
-                    <p class="text-muted mb-3" style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">
-                        PhD Student @ UCR<br>Security & Privacy
-                    </p>
-                    
-                    <div class="d-flex flex-wrap justify-content-center mt-3 mb-4">
-                        <span class="tech-badge">ML Privacy</span>
-                        <span class="tech-badge">Federated Learning</span>
-                        <span class="tech-badge">Cloud Security</span>
-                    </div>
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div
+            class="glass-card text-center sticky-top"
+            style="top: 100px; z-index: 1"
+          >
+            <img
+              src="/Images/portfolio_2026.jpg"
+              alt="Profile"
+              class="profile-img"
+            />
+            <h4>Md Olid Hasan Bhuiyan</h4>
+            <p
+              class="text-muted mb-3"
+              style="
+                font-family: &quot;Fira Code&quot;, monospace;
+                font-size: 0.9rem;
+              "
+            >
+              PhD Student @ UCR<br />Security & Privacy
+            </p>
 
-                    <div class="text-left mt-4" style="font-size: 0.9rem;">
-                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-muted"></i> Riverside, CA</p>
-                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-muted"></i> <a href="mailto:mbhui008@ucr.edu">mbhui008@ucr.edu</a></p>
-                    </div>
-
-                    <div class="profile-links">
-                        <a href="https://scholar.google.com/citations?user=FqGRNsAAAAAJ&hl=en"><i class="fas fa-graduation-cap"></i></a>
-                        <a href="https://github.com/Sizvy"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
+            <div class="d-flex flex-wrap justify-content-center mt-3 mb-4">
+              <span class="tech-badge">ML Privacy</span>
+              <span class="tech-badge">Federated Learning</span>
+              <span class="tech-badge">Cloud Security</span>
             </div>
 
-            <div class="col-lg-8">
-                
-                <div class="glass-card">
-                    <h3 class="mb-4"><i class="fas fa-chalkboard-teacher mr-2" style="color: var(--accent-color)"></i> Teaching Experience</h3>
-                    
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Teaching Assistant - CS09B</span>
-                            <span class="job-date">Sep 2025 - Dec 2025</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Data Oriented Introduction to Computing II</strong><br>
-                            Assisted students with lab assignments involving data structures (linked lists, stacks, queues, trees, graphs) in Python.
-                        </p>
-                        <a href="https://drive.google.com/drive/folders/19dcJKcyXa4_atQc_GrHnuxcU3E1VTMPw?usp=sharing" target="_blank" class="btn-glass-sm">
-                            <i class="far fa-comments mr-2"></i> Student Feedback
-                        </a>
-                    </div>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Teaching Assistant - CS170</span>
-                            <span class="job-date">Jul 2025 - Aug 2025</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Introduction to Artificial Intelligence</strong><br>
-                            Ran discussion sessions on graph searching algorithms including BFS, DFS, UCS, and A* search.
-                        </p>
-                        <a href="https://drive.google.com/drive/folders/19dcJKcyXa4_atQc_GrHnuxcU3E1VTMPw?usp=sharing" target="_blank" class="btn-glass-sm">
-                            <i class="far fa-comments mr-2"></i> Student Feedback
-                        </a>
-                    </div>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Teaching Assistant - CS163</span>
-                            <span class="job-date">Apr 2025 - Jun 2025</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Privacy Technologies</strong><br>
-                            Conducted discussion sessions on topics such as Privacy in ML/AI, Human Factors, Cryptography, and Mobile Privacy.
-                        </p>
-                        <a href="https://drive.google.com/file/d/1MoTm6yXtSneVtPCNE2GZcq_WOPWJds-F/view?usp=sharing" target="_blank" class="btn-glass-sm">
-                            <i class="far fa-comments mr-2"></i> Student Feedback
-                        </a>
-                    </div>
-                </div>
-
-                <div class="glass-card">
-                    <h3 class="mb-4"><i class="fas fa-briefcase mr-2" style="color: var(--accent-color)"></i> Industry Experience</h3>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Site Reliability Engineer</span>
-                            <span class="job-date">Apr 2024 - Sep 2024</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Relisource Software Ltd.</strong><br>
-                            Worked with NewRelic and ASP.NET Web API to ensure system reliability and performance.
-                        </p>
-                    </div>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Software Programmer</span>
-                            <span class="job-date">Jun 2023 - Mar 2024</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Grameen Bank IT Department</strong><br>
-                            Developed Human Resource Management and Micro-Finance Banking Systems using ASP.NET WebAPI, REST APIs, PostgreSQL, SQL Server, and EF Core.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="glass-card">
-                    <h3 class="mb-4"><i class="fas fa-certificate mr-2" style="color: var(--accent-color)"></i> Professional Service</h3>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Professional Member</span>
-                            <span class="job-date">May 2025 - Present</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Association for Computing Machinery (ACM)</strong><br>
-                            Member ID: 9085533
-                        </p>
-                        <a href="https://www.acm.org/membership/membership-benefits" target="_blank" class="btn-glass-sm">
-                            <i class="fas fa-external-link-alt mr-2"></i> Member Benefits
-                        </a>
-                    </div>
-
-                    <div class="job-item">
-                        <div class="job-header">
-                            <span class="job-title">Reviewer</span>
-                            <span class="job-date">May 2025</span>
-                        </div>
-                        <p class="job-desc">
-                            <strong>Humanities and Social Sciences Communications [Springer Nature]</strong>
-                        </p>
-                        <a href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/details/certifications/1746940525233/single-media-viewer/?profileId=ACoAACu4BaQBzN_wvzv8ik8wkpWXDIu2GRPnd4I" target="_blank" class="btn-glass-sm">
-                            <i class="fas fa-certificate mr-2"></i> View Certificate
-                        </a>
-                    </div>
-                </div>
-
+            <div class="text-left mt-4" style="font-size: 0.9rem">
+              <p class="mb-2">
+                <i class="fas fa-map-marker-alt mr-2 text-muted"></i> Riverside,
+                CA
+              </p>
+              <p class="mb-2">
+                <i class="fas fa-envelope mr-2 text-muted"></i>
+                <a href="mailto:mbhui008@ucr.edu">mbhui008@ucr.edu</a>
+              </p>
             </div>
+
+            <div class="profile-links">
+              <a
+                href="https://scholar.google.com/citations?user=FqGRNsAAAAAJ&hl=en"
+                ><i class="fas fa-graduation-cap"></i
+              ></a>
+              <a href="https://github.com/Sizvy"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
         </div>
+
+        <div class="col-lg-8">
+          <div class="glass-card">
+            <h3 class="mb-4">
+              <i
+                class="fas fa-chalkboard-teacher mr-2"
+                style="color: var(--accent-color)"
+              ></i>
+              Teaching Experience
+            </h3>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Teaching Assistant - CS09B</span>
+                <span class="job-date">Sep 2025 - Dec 2025</span>
+              </div>
+              <p class="job-desc">
+                <strong>Data Oriented Introduction to Computing II</strong
+                ><br />
+                Assisted students with lab assignments involving data structures
+                (linked lists, stacks, queues, trees, graphs) in Python.
+              </p>
+              <a
+                href="/Files/CS09B_Feedback.pdf"
+                target="_blank"
+                class="btn-glass-sm"
+              >
+                <i class="fas fa-file-pdf mr-2"></i> Student Feedback
+              </a>
+            </div>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Teaching Assistant - CS170</span>
+                <span class="job-date">Jul 2025 - Aug 2025</span>
+              </div>
+              <p class="job-desc">
+                <strong>Introduction to Artificial Intelligence</strong><br />
+                Ran discussion sessions on graph searching algorithms including
+                BFS, DFS, UCS, and A* search.
+              </p>
+              <a
+                href="/Files/CS170_Feedback.pdf"
+                target="_blank"
+                class="btn-glass-sm"
+              >
+                <i class="fas fa-file-pdf mr-2"></i> Student Feedback
+              </a>
+            </div>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Teaching Assistant - CS163</span>
+                <span class="job-date">Apr 2025 - Jun 2025</span>
+              </div>
+              <p class="job-desc">
+                <strong>Privacy Technologies</strong><br />
+                Conducted discussion sessions on topics such as Privacy in
+                ML/AI, Human Factors, Cryptography, and Mobile Privacy.
+              </p>
+              <a
+                href="/Files/CS163_Feedback.pdf"
+                target="_blank"
+                class="btn-glass-sm"
+              >
+                <i class="fas fa-file-pdf mr-2"></i> Student Feedback
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="mb-4">
+              <i
+                class="fas fa-briefcase mr-2"
+                style="color: var(--accent-color)"
+              ></i>
+              Industry Experience
+            </h3>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Site Reliability Engineer</span>
+                <span class="job-date">Apr 2024 - Sep 2024</span>
+              </div>
+              <p class="job-desc">
+                <strong>Relisource Software Ltd.</strong><br />
+                Worked with NewRelic and ASP.NET Web API to ensure system
+                reliability and performance.
+              </p>
+            </div>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Software Programmer</span>
+                <span class="job-date">Jun 2023 - Mar 2024</span>
+              </div>
+              <p class="job-desc">
+                <strong>Grameen Bank IT Department</strong><br />
+                Developed Human Resource Management and Micro-Finance Banking
+                Systems using ASP.NET WebAPI, REST APIs, PostgreSQL, SQL Server,
+                and EF Core.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="mb-4">
+              <i
+                class="fas fa-certificate mr-2"
+                style="color: var(--accent-color)"
+              ></i>
+              Professional Service
+            </h3>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Professional Member</span>
+                <span class="job-date">May 2025 - Present</span>
+              </div>
+              <p class="job-desc">
+                <strong>Association for Computing Machinery (ACM)</strong><br />
+                Member ID: 9085533
+              </p>
+              <a
+                href="https://www.acm.org/membership/membership-benefits"
+                target="_blank"
+                class="btn-glass-sm"
+              >
+                <i class="fas fa-external-link-alt mr-2"></i> Member Benefits
+              </a>
+            </div>
+
+            <div class="job-item">
+              <div class="job-header">
+                <span class="job-title">Reviewer</span>
+                <span class="job-date">May 2025</span>
+              </div>
+              <p class="job-desc">
+                <strong
+                  >Humanities and Social Sciences Communications [Springer
+                  Nature]</strong
+                >
+              </p>
+              <a
+                href="https://www.linkedin.com/in/md-olid-hasan-bhuiyan-970783185/details/certifications/1746940525233/single-media-viewer/?profileId=ACoAACu4BaQBzN_wvzv8ik8wkpWXDIu2GRPnd4I"
+                target="_blank"
+                class="btn-glass-sm"
+              >
+                <i class="fas fa-certificate mr-2"></i> View Certificate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <button class="theme-switch" id="themeToggle">
-        <i class="fas fa-sun"></i>
+      <i class="fas fa-sun"></i>
     </button>
 
     <script>
-        const toggleBtn = document.getElementById('themeToggle');
-        const icon = toggleBtn.querySelector('i');
-        const body = document.body;
+      const toggleBtn = document.getElementById("themeToggle");
+      const icon = toggleBtn.querySelector("i");
+      const body = document.body;
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.setAttribute('data-theme', savedTheme);
-            updateIcon(savedTheme);
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        body.setAttribute("data-theme", savedTheme);
+        updateIcon(savedTheme);
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateIcon(newTheme);
+      });
+
+      function updateIcon(theme) {
+        if (theme === "dark") {
+          icon.className = "fas fa-sun";
+        } else {
+          icon.className = "fas fa-moon";
         }
-
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            if (theme === 'dark') {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-        }
+      }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
