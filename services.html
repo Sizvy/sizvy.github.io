@@ -267,6 +267,56 @@
         }
       }
 
+      /* --- Section toggle (Teaching / Industry / Service) --- */
+      .section-toggle {
+        display: flex;
+        gap: 6px;
+        padding: 6px;
+        margin-bottom: 25px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .section-toggle button {
+        flex: 1;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        font-family: "Manrope", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+      .section-toggle button:hover {
+        color: var(--text-main);
+      }
+      .section-toggle button.active {
+        background: var(--accent-color);
+        color: #fff;
+      }
+      .section-toggle button:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+      .info-section[hidden] {
+        display: none !important;
+      }
+      @media (max-width: 480px) {
+        .section-toggle button {
+          padding: 10px 6px;
+          font-size: 0.85rem;
+        }
+        .section-toggle button i {
+          display: none;
+        }
+      }
+
       @media (max-width: 768px) {
         .glass-card {
           padding: 20px;
@@ -380,7 +430,19 @@
         </div>
 
         <div class="col-lg-8">
-          <div class="glass-card">
+          <div class="section-toggle" role="tablist" aria-label="Affiliation type">
+            <button type="button" role="tab" id="tab-teaching" data-target="teaching" aria-controls="teaching" aria-selected="true" class="active">
+              <i class="fas fa-chalkboard-teacher mr-2"></i> Teaching
+            </button>
+            <button type="button" role="tab" id="tab-industry" data-target="industry" aria-controls="industry" aria-selected="false">
+              <i class="fas fa-briefcase mr-2"></i> Industry
+            </button>
+            <button type="button" role="tab" id="tab-service" data-target="service" aria-controls="service" aria-selected="false">
+              <i class="fas fa-certificate mr-2"></i> Service
+            </button>
+          </div>
+
+          <div class="glass-card info-section" id="teaching" role="tabpanel" aria-labelledby="tab-teaching">
             <h3 class="mb-4">
               <i
                 class="fas fa-chalkboard-teacher mr-2"
@@ -448,7 +510,7 @@
             </div>
           </div>
 
-          <div class="glass-card">
+          <div class="glass-card info-section" id="industry" role="tabpanel" aria-labelledby="tab-industry" hidden>
             <h3 class="mb-4">
               <i
                 class="fas fa-briefcase mr-2"
@@ -494,7 +556,7 @@
             </div>
           </div>
 
-          <div class="glass-card">
+          <div class="glass-card info-section" id="service" role="tabpanel" aria-labelledby="tab-service" hidden>
             <h3 class="mb-4">
               <i
                 class="fas fa-certificate mr-2"
@@ -576,6 +638,35 @@
           icon.className = "fas fa-moon";
         }
       }
+    </script>
+
+    <script>
+      // Section toggle (URL hash #teaching, #industry or #service opens that section)
+      (function () {
+        const tabs = document.querySelectorAll(".section-toggle button");
+        const sections = document.querySelectorAll(".info-section");
+
+        function show(id, updateHash) {
+          if (!document.getElementById(id)) id = "teaching";
+          sections.forEach((sec) => {
+            sec.hidden = sec.id !== id;
+          });
+          tabs.forEach((tab) => {
+            const on = tab.dataset.target === id;
+            tab.classList.toggle("active", on);
+            tab.setAttribute("aria-selected", on);
+          });
+          if (updateHash) history.replaceState(null, "", "#" + id);
+        }
+
+        tabs.forEach((tab) =>
+          tab.addEventListener("click", () => show(tab.dataset.target, true)),
+        );
+        window.addEventListener("hashchange", () =>
+          show(location.hash.slice(1), false),
+        );
+        show(location.hash.slice(1) || "teaching", false);
+      })();
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
