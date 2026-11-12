@@ -186,7 +186,69 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- Section toggle (Research / Updates / Background) --- */
+        .section-toggle {
+            display: flex;
+            gap: 6px;
+            padding: 6px;
+            margin-bottom: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+        .section-toggle button {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .section-toggle button:hover { color: var(--text-main); }
+        .section-toggle button.active {
+            background: var(--accent-color);
+            color: #fff;
+        }
+        .section-toggle button:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        .home-section[hidden] { display: none !important; }
+
+        /* --- Research focus list --- */
+        .focus-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+        .focus-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .focus-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 18px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
         /* --- Responsive --- */
+        @media (max-width: 480px) {
+            .section-toggle button { padding: 10px 6px; font-size: 0.85rem; }
+            .section-toggle button i { display: none; }
+        }
         @media (max-width: 768px) {
             .news-item { flex-direction: column; }
             .news-date { margin-bottom: 5px; opacity: 0.8; }
@@ -227,7 +289,7 @@
                     <div class="d-flex flex-wrap justify-content-center mt-3 mb-4">
                         <span class="tech-badge">ML Privacy</span>
                         <span class="tech-badge">Federated Learning</span>
-                        <span class="tech-badge">Cloud Security</span>
+                        <span class="tech-badge">Side Channels</span>
                     </div>
 
                     <div class="text-left mt-4" style="font-size: 0.9rem;">
@@ -244,23 +306,46 @@
             </div>
 
             <div class="col-lg-8">
-                
-                <div class="glass-card">
+
+                <div class="section-toggle" role="tablist" aria-label="Home sections">
+                    <button type="button" role="tab" id="tab-research" data-target="research" aria-controls="research" aria-selected="true" class="active">
+                        <i class="fas fa-flask mr-2"></i> Research
+                    </button>
+                    <button type="button" role="tab" id="tab-updates" data-target="updates" aria-controls="updates" aria-selected="false">
+                        <i class="fas fa-bullhorn mr-2"></i> Updates
+                    </button>
+                    <button type="button" role="tab" id="tab-background" data-target="background" aria-controls="background" aria-selected="false">
+                        <i class="fas fa-user-graduate mr-2"></i> Background
+                    </button>
+                </div>
+
+                <div class="glass-card home-section" id="research" role="tabpanel" aria-labelledby="tab-research">
                     <h3 class="mb-3">Research Focus</h3>
                     <p>
-                        I am currently pursuing my PhD at the University of California, Riverside (UCR). My primary research interest lies at the intersection of <strong>Security and Machine Learning</strong>.
+                        I am a PhD student at the University of California, Riverside (UCR), advised by Dr. Emiliano De Cristofaro. My research sits at the intersection of <strong>Security, Privacy, and Machine Learning</strong>, and I am currently working across several threads:
                     </p>
+                    <ul class="focus-list">
+                        <li><i class="fas fa-project-diagram"></i><strong>Federated learning:</strong> privacy auditing in Vertical Federated Learning (VFL), and the application and implications of trustworthy ML frameworks in O-RAN.</li>
+                        <li><i class="fas fa-stopwatch"></i><strong>Side channels in multimodal AI:</strong> measuring privacy leakage from prompt caching in commercial multi-modal APIs.</li>
+                        <li><i class="fas fa-database"></i><strong>Privacy of shared data:</strong> the privacy and utility of synthetic data generators, and tenant re-identification in pseudonymized multi-tenant SOC alert data.</li>
+                        <li><i class="fas fa-pen-nib"></i><strong>AI-assisted writing:</strong> measuring AI-assisted text editing beyond prompt-template leakage.</li>
+                    </ul>
                     <p>
-                        Specifically, I am investigating <strong>privacy leakages in Vertical Federated Learning (VFL)</strong> and developing robust defense mechanisms. Prior to this, I worked on Cloud Security with a focus on container runtime protection.
+                        Before this, I worked on Cloud Security with a focus on container runtime protection. See <a href="projects.html#research">Projects</a> for more on my current work.
                     </p>
                 </div>
 
-                <div class="glass-card">
+                <div class="glass-card home-section" id="updates" role="tabpanel" aria-labelledby="tab-updates" hidden>
                     <h3 class="mb-4">Recent Updates</h3>
                     
                     <div class="news-item">
                         <div class="news-date">Present</div>
-                        <div class="news-content">Researching privacy attacks in Vertical Federated Learning.</div>
+                        <div class="news-content">Working on privacy in federated learning, prompt-cache side channels in multimodal APIs, synthetic data privacy, and AI-assisted text editing. See <a href="projects.html#research">current projects</a>.</div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">Sep 2026</div>
+                        <div class="news-content">Completed my Research Internship at <strong>Sophos</strong>.</div>
                     </div>
 
                     <div class="news-item">
@@ -271,6 +356,11 @@
                     <div class="news-item">
                         <div class="news-date">April 2026</div>
                         <div class="news-content">Our paper<a href="https://arxiv.org/pdf/2601.05739" target="_blank">(PII-VisBench)</a> got accepted at ACL Findings!</div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">Mar 2026</div>
+                        <div class="news-content">Completed my <strong>M.S. in Computer Science</strong> at UC Riverside.</div>
                     </div>
 
                     <div class="news-item">
@@ -306,15 +396,18 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="glass-card">
+                        <div class="glass-card home-section" id="background" role="tabpanel" aria-labelledby="tab-background" hidden>
                             <h3 class="mb-3">Background</h3>
                             
                             <h5 class="mt-4"><i class="fas fa-user-graduate mr-2" style="color: var(--accent-color)"></i> Education</h5>
+                            <p class="mb-1"><strong>PhD (currently pursuing) in Computer Science</strong></p>
+                            <p class="text-muted small">UC, Riverside | Spring 2029 (expected)</p>
+
+                            <p class="mb-1"><strong>M.S. in Computer Science</strong></p>
+                            <p class="text-muted small">UC, Riverside | March 2026</p>
+
                             <p class="mb-1"><strong>B.Sc. in Computer Science & Engineering</strong></p>
                             <p class="text-muted small">BUET, Bangladesh | May 2023</p>
-
-                            <p class="mb-1"><strong>PhD (currently pursuing) in Computer Science</strong></p>
-                            <p class="text-muted small">UC, Riverside | Spring 2029(expected)</p>
                             
                             <hr style="border-color: var(--glass-border);">
 
@@ -363,6 +456,29 @@
                 icon.className = 'fas fa-moon';
             }
         }
+    </script>
+
+    <script>
+        // Section toggle (URL hash #research, #updates or #background opens that section)
+        (function () {
+            const tabs = document.querySelectorAll('.section-toggle button');
+            const sections = document.querySelectorAll('.home-section');
+
+            function show(id, updateHash) {
+                if (!document.getElementById(id)) id = 'research';
+                sections.forEach(sec => { sec.hidden = sec.id !== id; });
+                tabs.forEach(tab => {
+                    const on = tab.dataset.target === id;
+                    tab.classList.toggle('active', on);
+                    tab.setAttribute('aria-selected', on);
+                });
+                if (updateHash) history.replaceState(null, '', '#' + id);
+            }
+
+            tabs.forEach(tab => tab.addEventListener('click', () => show(tab.dataset.target, true)));
+            window.addEventListener('hashchange', () => show(location.hash.slice(1), false));
+            show(location.hash.slice(1) || 'research', false);
+        })();
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
